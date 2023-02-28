@@ -15,6 +15,9 @@ import { MaterialModule } from '../material/material.module';
     CommonModule,
     MaterialModule
   ],
-  exports: [NavbarComponent, FooterComponent]
+  exports: [
+    NavbarComponent, 
+    FooterComponent
+  ]
 })
 export class SharedModule { }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommandBarActions } from '../../enums/command-bar-actions.enum';
+import { TableActions } from '../../enums/table-actions.enum';
 import { Pizza } from '../../models/pizza.interface';
 
 @Component({
@@ -20,7 +23,24 @@ export class ListComponent implements OnInit {
     { headerName: "Size", fieldName: "size" },
     { headerName: "Price", fieldName: "price" },
   ]
-  constructor() {}
+  constructor(private router: Router) {}
   ngOnInit(): void {}
-  selectPizza(pizza: Pizza) {}
+  selectPizza(data: { pizza: Pizza, action: TableActions }) {
+    this.router.navigate(['pizza', 'form', data.pizza.id]);
+  }
+
+  executeCommandBarAction(action: CommandBarActions) {
+    switch (action) {
+      case CommandBarActions.Create: {
+        this.router.navigate(["pizza", "form"]);
+        return 
+      }
+      case CommandBarActions.DeleteAll: {
+        return;
+      }
+      default: {
+        return;
+      }
+    }
+  }
 }

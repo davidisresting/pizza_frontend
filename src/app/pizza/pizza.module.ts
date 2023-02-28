@@ -7,6 +7,7 @@ import { PizzaListComponent } from './components/pizza-list/pizza-list.component
 import { PizzaRoutingModule } from './pizza-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { PizzaCommandBarComponent } from './components/pizza-command-bar/pizza-command-bar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,8 @@ import { PizzaCommandBarComponent } from './components/pizza-command-bar/pizza-c
   imports: [
     CommonModule,
     PizzaRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
   ]
 })
 export class PizzaModule { }
