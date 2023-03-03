@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Pizza } from '../../models/pizza.interface';
 
 @Component({
   selector: 'app-pizza-form',
@@ -7,8 +8,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./pizza-form.component.scss']
 })
 export class PizzaFormComponent implements OnInit {
-  @Input() selectedId = "";
-  @Input() actionButtonLabel: string = "Create";
+  @Input() selectedPizza: Pizza | null = null;
+  @Input() actionButtonLabel: string = 'Create';
   @Output() action = new EventEmitter();
   form: FormGroup;
 
@@ -26,8 +27,8 @@ export class PizzaFormComponent implements OnInit {
   }
 
   checkAction() {
-    if (this.selectedId) {
-      this.actionButtonLabel = "Update";
+    if (this.selectedPizza) {
+      this.actionButtonLabel = 'Update';
       this.patchDataValues();
     }
   }
@@ -37,7 +38,10 @@ export class PizzaFormComponent implements OnInit {
   }
 
   emitAction() {
-    this.action.emit({ value: this.form.value, action: this.actionButtonLabel });
+    this.action.emit({ 
+      value: this.form.value, 
+      action: this.actionButtonLabel 
+    });
   }
 
   clear() {

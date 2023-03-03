@@ -1,1 +1,4 @@
-<app-pizza-form [selectedId]="id"></app-pizza-form>
+<app-pizza-form 
+    [selectedPizza]="pizza"
+    (action)="formAction($event)"
+></app-pizza-form>

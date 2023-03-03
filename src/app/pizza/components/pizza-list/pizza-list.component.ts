@@ -10,7 +10,7 @@ import { Pizza } from '../../models/pizza.interface';
 
 export class PizzaListComponent implements OnInit {
   @Input() headers: Array<{headerName: string, fieldName: keyof Pizza}> = [];
-  @Input() pizzas: Array<Pizza> = [];
+  @Input() pizzas: ReadonlyArray<Pizza> = [];
   @Output() pizza = new EventEmitter<{ pizza: Pizza, action: TableActions }>();
   headerFields: string[] = [];
 
