@@ -25,8 +25,8 @@ export class PizzaService {
     )
   }
 
-  addPizza(pizza: Pizza): Observable<Pizza> {
-    return this.http.post<Pizza>(`$${environment.apiURL}/pizzas`, pizza).pipe(
+  addPizza(pizza: Pizza): Observable<Pizza> {    
+    return this.http.post<Pizza>(`${environment.apiURL}/pizzas`, { ...pizza, orders: [] }).pipe(
       tap((data: Pizza) => data),
       catchError(err => throwError(() => err))
     )

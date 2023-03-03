@@ -34,7 +34,9 @@ export class PizzaFormComponent implements OnInit {
   }
 
   patchDataValues() {
-
+    if(this.selectedPizza) {
+      this.form.patchValue(this.selectedPizza);
+    }
   }
 
   emitAction() {

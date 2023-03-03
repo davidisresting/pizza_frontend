@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, EMPTY, map, mergeMap, tap } from "rxjs";
+import { catchError, EMPTY, forkJoin, map, mergeMap, tap } from "rxjs";
 import { Pizza } from "../models/pizza.interface";
 import { PizzaService } from "../services/pizza.service";
 import { PizzaActions } from "./pizza.actions";
@@ -41,7 +41,7 @@ export class PizzaEffects {
                     catchError(() => EMPTY)
                 ))
         )
-    }, { dispatch: true })    
+    }, { dispatch: true })
 
     updatePizza$ = createEffect(() => {
         return this.actions$.pipe(
@@ -75,5 +75,15 @@ export class PizzaEffects {
         )
     }, { dispatch: true });
 
-
+    removeAllPizza$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(PizzaActions.REMOVE_ALL_PIZZA_API),
+            mergeMap((data: { type: string, payload: string[] }) =>
+                forkJoin([ ...data.payload.map((id) => this.pizzaService.removePizza(id))])
+                .pipe(
+                    map(() => ({ type: PizzaActions.REMOVE_ALL_PIZZA_STATE})),
+                    catchError(() => EMPTY)
+                ))
+        )
+    }, { dispatch: true })
 }

@@ -22,6 +22,8 @@ export class FormComponent implements OnInit {
     const id = this.router.snapshot.params['id'];
     this.pizza$ = this.store.select(selectPizza(id));
     this.pizza$.subscribe(data => {
+      console.log('obs pizza data', data, id);
+      
       if (data) this.pizza = data;
     });
   }

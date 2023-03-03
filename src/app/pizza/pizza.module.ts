@@ -8,6 +8,11 @@ import { PizzaRoutingModule } from './pizza-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { PizzaCommandBarComponent } from './components/pizza-command-bar/pizza-command-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { pizzaReducer } from './state/pizza.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { PizzaEffects } from './state/pizza.effects';
 
 
 
@@ -24,6 +29,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     PizzaRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    StoreModule.forFeature('pizzaState', pizzaReducer),
+    EffectsModule.forFeature([PizzaEffects])
   ]
 })
 export class PizzaModule { }

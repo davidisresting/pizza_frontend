@@ -14,14 +14,6 @@ import { selectPizzas } from '../../state/pizza.selectors';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  // pizzas: Pizza[] = [
-  //   {
-  //     id: "1",
-  //     name: "Margherita",
-  //     size: "medium",
-  //     price: 8.00
-  //   }
-  // ]
   pizzas: ReadonlyArray<Pizza> = [
     {
       id: "1",
@@ -75,7 +67,7 @@ export class ListComponent implements OnInit {
       }
       case CommandBarActions.DeleteAll: {
         this.store.dispatch({
-          type: PizzaActions.REMOVE_PIZZA_API,
+          type: PizzaActions.REMOVE_ALL_PIZZA_API,
           payload: [ ...this.pizzas.map(p => p.id)]
         });
         return;
