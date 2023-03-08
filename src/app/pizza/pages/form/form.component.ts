@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { CanComponentDeactivate } from 'src/app/core/guards/form.guard';
 import { AppState } from 'src/app/state/app.state';
 import { Pizza } from '../../models/pizza.interface';
 import { PizzaActions } from '../../state/pizza.actions';
@@ -12,7 +13,7 @@ import { selectPizza } from '../../state/pizza.selectors';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, CanComponentDeactivate {
   pizza$: Observable<Pizza | undefined>;
   pizza: Pizza | null = null;
   constructor(
@@ -28,6 +29,10 @@ export class FormComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+  }
+  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
+    const confirmation = window.confirm('Are you sure?');
+    return confirmation;
   }
   formAction(data: { value: Pizza, action: string }) {
     switch (data.action) {
