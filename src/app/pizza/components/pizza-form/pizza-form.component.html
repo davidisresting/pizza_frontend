@@ -3,21 +3,21 @@
     <form [formGroup]="form" class="pizza-form">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Name</mat-label>
-            <input matInput formControlName="name" placeholder="Ex. Margherita">
+            <input matInput formControlName="name" placeholder="Ex. Margherita" data-cy="name">
         </mat-form-field>
         
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Size</mat-label>
-            <input matInput formControlName="size" placeholder="Ex. medium">
+            <input matInput formControlName="size" placeholder="Ex. medium" data-cy="size">
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Price</mat-label>
-            <input matInput formControlName="price" placeholder="Ex. 7.00">
+            <input matInput formControlName="price" placeholder="Ex. 7.00" data-cy="price">
         </mat-form-field>
 
         <div class="button-group">
-            <button mat-raised-button color="primary" (click)="emitAction()">
+            <button mat-raised-button color="primary" (click)="emitAction()" data-cy="action">
                 {{ actionButtonLabel }}
             </button>
             &nbsp;
